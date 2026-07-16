@@ -1,0 +1,110 @@
+/*
+ * Japanese Academic Dark for Typora
+ * Dark-screen academic theme with light A4 printing.
+ * License: MIT
+ */
+
+@import url("./japanese-academic.css");
+
+:root {
+  color-scheme: dark;
+
+  --jp-bg: #151515;
+  --jp-paper: #151515;
+  --jp-text: #e3e3df;
+  --jp-muted: #a5a5a0;
+  --jp-accent: #b5c7d3;
+  --jp-border: #555553;
+  --jp-soft: #202020;
+  --jp-code-bg: #1f2021;
+  --jp-selection: #394d59;
+  --jp-sidebar: #1b1b1c;
+
+  --bg-color: var(--jp-bg);
+  --text-color: var(--jp-text);
+  --md-char-color: var(--jp-muted);
+  --meta-content-color: var(--jp-muted);
+  --primary-color: var(--jp-accent);
+  --rawblock-edit-panel-bd: var(--jp-code-bg);
+  --search-hit-bg-color: #5b4e20;
+  --search-select-bg-color: var(--jp-selection);
+  --side-bar-bg-color: var(--jp-sidebar);
+  --control-text-color: var(--jp-muted);
+  --select-text-bg-color: var(--jp-selection);
+  --select-text-font-color: var(--jp-text);
+  --active-file-bg-color: #303031;
+  --active-file-text-color: var(--jp-text);
+  --item-hover-bg-color: #272728;
+  --window-border: 1px solid var(--jp-border);
+}
+
+@media screen {
+  #write h2 {
+    border-bottom-color: var(--jp-border);
+  }
+
+  #write blockquote,
+  #write del,
+  #footer-word-count,
+  #footer-spell-check,
+  #footer-more {
+    color: var(--jp-muted);
+  }
+
+  #write mark {
+    background: #5b4e20;
+    color: #fff4c9;
+  }
+
+  .cm-s-inner .cm-comment {
+    color: #aaa69d;
+  }
+
+  .cm-s-inner .cm-keyword,
+  .cm-s-inner .cm-atom,
+  .cm-s-inner .cm-tag {
+    color: #d4a7df;
+  }
+
+  .cm-s-inner .cm-number,
+  .cm-s-inner .cm-property,
+  .cm-s-inner .cm-attribute {
+    color: #e3ab82;
+  }
+
+  .cm-s-inner .cm-string,
+  .cm-s-inner .cm-string-2 {
+    color: #9fc89f;
+  }
+
+  .cm-s-inner .cm-def,
+  .cm-s-inner .cm-variable,
+  .cm-s-inner .cm-variable-2,
+  .cm-s-inner .cm-variable-3 {
+    color: #9cc9e3;
+  }
+}
+
+/* Dark colors are editor-only. PDF export always uses the light theme. */
+@media print {
+  :root {
+    color-scheme: light;
+    --jp-bg: #ffffff;
+    --jp-paper: #ffffff;
+    --jp-text: #000000;
+    --jp-muted: #575757;
+    --jp-accent: #1c1c1c;
+    --jp-border: #9d9d9d;
+    --jp-soft: #f4f4f4;
+    --jp-code-bg: #f3f3f3;
+    --jp-selection: transparent;
+    --jp-sidebar: #ffffff;
+  }
+
+  html,
+  body,
+  #write {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}
