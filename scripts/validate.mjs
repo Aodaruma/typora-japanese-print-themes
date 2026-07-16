@@ -91,8 +91,13 @@ for (const file of ["README.md", "LICENSE", "CHANGELOG.md", "docs/design-rationa
 }
 
 const releaseWorkflow = await read(path.join(".github", "workflows", "release.yml"));
+const ciWorkflow = await read(path.join(".github", "workflows", "ci.yml"));
 check(releaseWorkflow.includes("v*.*.*"), "リリースワークフローにvX.X.Xタグのトリガーがありません");
 check(releaseWorkflow.includes("gh release create"), "リリース作成コマンドがありません");
+for (const [name, workflow] of [["CI", ciWorkflow], ["Release", releaseWorkflow]]) {
+  check(workflow.includes("actions/checkout@v6"), `${name}: actions/checkout@v6を使用していません`);
+  check(workflow.includes("actions/setup-node@v6"), `${name}: actions/setup-node@v6を使用していません`);
+}
 
 if (failures.length > 0) {
   console.error("検証に失敗しました:");
