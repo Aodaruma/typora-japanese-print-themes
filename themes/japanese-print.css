@@ -1,0 +1,70 @@
+/*
+ * Japanese Print for Typora
+ * General-purpose Japanese serif theme for reading and A4 printing.
+ * License: MIT
+ */
+
+@import url("./japanese-print/base.css");
+
+:root {
+  --jp-font-body: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro", "Noto Serif CJK JP", "Noto Serif JP",
+    "Source Han Serif JP", "MS Mincho", serif;
+  --jp-font-heading: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro", "Noto Serif CJK JP", "Noto Serif JP",
+    "Source Han Serif JP", "MS Mincho", serif;
+  --jp-font-mono: "BIZ UDゴシック", "BIZ UDGothic", "UDEV Gothic",
+    "Source Han Code JP", "Noto Sans Mono CJK JP", "SFMono-Regular",
+    Consolas, "Liberation Mono", monospace;
+
+  --jp-screen-font-size: 16px;
+  --jp-print-font-size: 11pt;
+  --jp-screen-measure: 42em;
+  --jp-print-measure: 42em;
+  --jp-line-height: 1.9;
+  --jp-paragraph-indent: 1em;
+  --jp-paragraph-gap: 0;
+
+  --jp-bg: #f2f1ed;
+  --jp-paper: #fffefb;
+  --jp-text: #242321;
+  --jp-muted: #6d6a64;
+  --jp-accent: #405c70;
+  --jp-border: #c9c5bd;
+  --jp-soft: #f2f0ea;
+  --jp-code-bg: #f1f1ef;
+  --jp-selection: #d7e4eb;
+  --jp-sidebar: #ebe9e4;
+  --jp-shadow: 0 12px 40px rgb(37 35 31 / 10%);
+
+  --side-bar-bg-color: var(--jp-sidebar);
+  --control-text-color: var(--jp-muted);
+  --select-text-bg-color: var(--jp-selection);
+  --select-text-font-color: var(--jp-text);
+  --active-file-bg-color: #ddd9d1;
+  --active-file-text-color: var(--jp-text);
+  --item-hover-bg-color: #e3e0d9;
+  --window-border: 1px solid var(--jp-border);
+}
+
+@page {
+  size: A4 portrait;
+  margin: 25mm;
+}
+
+/* A first heading works as a restrained document title. */
+#write > h1:first-of-type {
+  margin-top: 0;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+/* Book-style option: the first paragraph after a heading may start flush. */
+#write > h1 + p,
+#write > h2 + p,
+#write > h3 + p,
+#write > h4 + p,
+#write > h5 + p,
+#write > h6 + p {
+  text-indent: 0;
+}

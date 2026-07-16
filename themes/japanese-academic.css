@@ -1,0 +1,90 @@
+/*
+ * Japanese Academic for Typora
+ * Monochrome Japanese academic theme for papers, theses, and reports.
+ * License: MIT
+ */
+
+@import url("./japanese-print/base.css");
+
+:root {
+  --jp-font-body: "Times New Roman", "Yu Mincho", "YuMincho",
+    "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Noto Serif CJK JP",
+    "Noto Serif JP", "Source Han Serif JP", "MS Mincho", serif;
+  --jp-font-heading: Arial, "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", "Meiryo",
+    sans-serif;
+  --jp-font-mono: "BIZ UDゴシック", "BIZ UDGothic", "UDEV Gothic",
+    "Source Han Code JP", "Noto Sans Mono CJK JP", "SFMono-Regular",
+    Consolas, "Liberation Mono", monospace;
+
+  --jp-screen-font-size: 16px;
+  --jp-print-font-size: 10.5pt;
+  --jp-screen-measure: 40em;
+  --jp-print-measure: 40em;
+  --jp-line-height: 2.15;
+  --jp-paragraph-indent: 1em;
+  --jp-paragraph-gap: 0;
+
+  --jp-bg: #eeeeec;
+  --jp-paper: #ffffff;
+  --jp-text: #111111;
+  --jp-muted: #575757;
+  --jp-accent: #1c1c1c;
+  --jp-border: #9d9d9d;
+  --jp-soft: #f4f4f4;
+  --jp-code-bg: #f3f3f3;
+  --jp-selection: #d9e4ee;
+  --jp-sidebar: #e7e7e5;
+  --jp-shadow: 0 10px 34px rgb(0 0 0 / 9%);
+
+  --side-bar-bg-color: var(--jp-sidebar);
+  --control-text-color: var(--jp-muted);
+  --select-text-bg-color: var(--jp-selection);
+  --select-text-font-color: var(--jp-text);
+  --active-file-bg-color: #d8d8d5;
+  --active-file-text-color: var(--jp-text);
+  --item-hover-bg-color: #ddddda;
+  --window-border: 1px solid var(--jp-border);
+}
+
+@page {
+  size: A4 portrait;
+  margin: 25mm;
+}
+
+#write > h1:first-of-type {
+  margin-top: 0;
+  margin-bottom: 2.5em;
+  padding-bottom: 0;
+  border-bottom: 0;
+  text-align: center;
+  font-family: var(--jp-font-body);
+  font-size: 1.7em;
+  letter-spacing: 0.08em;
+}
+
+#write > h1:not(:first-of-type) {
+  font-size: 1.45em;
+}
+
+#write > h1:first-of-type + .document-meta {
+  margin-top: -1.5em;
+}
+
+#write h2 {
+  border-bottom-color: #555555;
+}
+
+#write table thead {
+  background: transparent;
+}
+
+#write table tr:nth-child(even) {
+  background: transparent;
+}
+
+@media print {
+  #write > h1:first-of-type {
+    margin-bottom: 2.5em;
+  }
+}

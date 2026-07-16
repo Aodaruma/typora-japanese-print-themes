@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate themes
+        run: npm test
+
+      - name: Validate tag and version
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME}"
+          version="$(tr -d '[:space:]' < VERSION)"
+          if [[ ! "${tag}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag must match vX.X.X: ${tag}" >&2
+            exit 1
+          fi
+          if [[ "${tag}" != "v${version}" ]]; then
+            echo "Tag ${tag} does not match VERSION ${version}" >&2
+            exit 1
+          fi
+
+      - name: Build release archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle="typora-japanese-print-themes-${GITHUB_REF_NAME}"
+          mkdir -p "dist/${bundle}/japanese-print"
+          cp themes/japanese-print.css "dist/${bundle}/"
+          cp themes/japanese-academic.css "dist/${bundle}/"
+          cp themes/japanese-print/base.css "dist/${bundle}/japanese-print/"
+          cp README.md LICENSE CHANGELOG.md "dist/${bundle}/"
+          (
+            cd dist
+            zip -q -r "${bundle}.zip" "${bundle}"
+            sha256sum "${bundle}.zip" > SHA256SUMS
+          )
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle="typora-japanese-print-themes-${GITHUB_REF_NAME}"
+          gh release create "${GITHUB_REF_NAME}" \
+            "dist/${bundle}.zip#Typora themes (ZIP)" \
+            "dist/SHA256SUMS#SHA-256 checksums" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes \
+            --verify-tag

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Typora Japanese Print Themes Preview</title>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const selected = params.get("theme") === "academic"
+        ? "japanese-academic.css"
+        : "japanese-print.css";
+      document.write(`<link rel="stylesheet" href="../themes/${selected}">`);
+    </script>
+  </head>
+  <body>
+    <main id="write">
+      <h1>日本語文書の組版設計</h1>
+      <p class="document-meta">情報学研究科　山田花子</p>
+
+      <section class="abstract">
+        <h2>要旨</h2>
+        <p>本稿では、読みやすい日本語文書に必要な明朝体、行長、行間、段落字下げを整理し、印刷に適した版面として実装する。</p>
+      </section>
+      <p class="keywords"><strong>キーワード：</strong>日本語組版、明朝体、印刷</p>
+
+      <h2>1. はじめに</h2>
+      <p>日本語の横組文書では、漢字、仮名、欧文、数字、約物が同じ行に混在する。本文書体だけでなく、行長と行間、禁則処理、段落字下げを一体として設計することが重要である。</p>
+      <p>段落の先頭は全角1字分下げる。適度な余白と一定の行送りは、長文を追う読者の視線を安定させる。</p>
+
+      <blockquote>
+        <p>引用文は本文と視覚的に区別し、出典を明示する。引用形式は各分野の規程に従う。</p>
+      </blockquote>
+
+      <h2>2. 評価</h2>
+      <h3>2.1 初期設定</h3>
+      <p>一般文書と学術文書に共通する条件を保ちつつ、用途に応じて本文幅と見出し書体を調整した。</p>
+
+      <p class="table-caption">表1　テーマの比較</p>
+      <table>
+        <thead>
+          <tr><th>項目</th><th>一般文書</th><th>学術文書</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>本文</td><td>11pt相当</td><td>10.5pt相当</td></tr>
+          <tr><td>行幅</td><td>約42字</td><td>約40字</td></tr>
+          <tr><td>余白</td><td>25mm</td><td>25mm</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2.2 再現可能性</h3>
+      <p>分析手順や設定値は、必要に応じてコードブロックで示す。</p>
+      <pre class="md-fences"><code>const theme = "Japanese Academic";
+console.log(`Theme: ${theme}`);</code></pre>
+
+      <section class="footnotes">
+        <ol><li><p>提出先の執筆要領がある場合は、その指定を優先する。</p></li></ol>
+      </section>
+    </main>
+  </body>
+</html>
