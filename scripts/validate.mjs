@@ -60,6 +60,7 @@ for (const file of expectedThemes) {
   check(css.includes("size: A4 portrait"), `${relativePath}: A4指定がありません`);
   check(css.includes("--jp-font-body"), `${relativePath}: 本文フォント変数がありません`);
   check(css.includes("--jp-print-font-size"), `${relativePath}: 印刷文字サイズ変数がありません`);
+  check(css.includes("--jp-print-line-height"), `${relativePath}: 印刷行高変数がありません`);
   check(css.includes("--jp-bg: #ffffff"), `${relativePath}: 画面背景が#ffffffではありません`);
   check(css.includes("--jp-paper: #ffffff"), `${relativePath}: 本文背景が#ffffffではありません`);
   check(!css.includes("--jp-shadow"), `${relativePath}: 影の変数が残っています`);
@@ -73,6 +74,14 @@ const basePath = path.join("themes", "japanese-print", "base.css");
 const baseCss = await read(basePath);
 checkBalancedBraces(baseCss, basePath);
 check(!baseCss.includes("box-shadow"), `${basePath}: 影の指定が残っています`);
+check(
+  baseCss.includes("font-size: var(--jp-print-font-size) !important"),
+  `${basePath}: 印刷時の文字サイズが明示されていません`,
+);
+check(
+  baseCss.includes("var(--jp-print-line-height, var(--jp-line-height))"),
+  `${basePath}: 印刷時の行高が明示されていません`,
+);
 for (const required of [
   "#write",
   "line-break: strict",

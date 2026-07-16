@@ -547,7 +547,7 @@ body {
   body {
     background: #ffffff !important;
     color: #000000 !important;
-    font-size: var(--jp-print-font-size);
+    font-size: var(--jp-print-font-size) !important;
   }
 
   #write {
@@ -558,11 +558,12 @@ body {
     padding: 0;
     background: transparent;
     color: #000000;
+    font-size: var(--jp-print-font-size) !important;
   }
 
   #write,
   #write p {
-    line-height: var(--jp-line-height);
+    line-height: var(--jp-print-line-height, var(--jp-line-height));
   }
 
   #write h1,
