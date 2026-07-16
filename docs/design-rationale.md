@@ -41,12 +41,19 @@
   - PDFの用紙、余白、テーマ、改ページ、ヘッダー／フッターはエクスポート設定から指定できます。
   - 印刷専用のCSSは `@media print` で定義できます。
 
+### 同梱フォント
+
+- [Noto Serif JP](https://notofonts.github.io/noto-docs/specimen/NotoSerifCJKjp/) は日本語に加えてラテン文字、ギリシャ文字、キリル文字などを収録するSerif書体です。
+- [Notoの公式ライセンス説明](https://notofonts.github.io/noto-docs/website/use/)では、NotoフォントはOpen Font Licenseで提供され、条件に従った再配布が可能とされています。
+- フォントファイルとOFL本文は [Google Fonts公式リポジトリ](https://github.com/google/fonts/tree/main/ofl/notoserifjp) から取得しています。
+- 游明朝はWindowsで利用できますが、Microsoftの案内では再配布に別途ライセンス情報の確認が必要です。そのため同梱対象にはしていません。
+
 ## テーマへの反映
 
 | 根拠 | 実装 |
 | --- | --- |
 | 長文本文では明朝体が一般的 | 游明朝、ヒラギノ明朝、Noto Serif CJK JP、源ノ明朝、MS明朝の順でフォールバック |
-| 和欧文混植 | 学術テーマでは欧文をTimes系、和文を明朝系へフォールバック |
+| 和欧文混植 | 学術テーマは同梱Noto Serif JPを全スクリプトへ使用し、字面とベースラインを統一 |
 | 段落先頭は原則1字下げ | `--jp-paragraph-indent: 1em` |
 | 行末を揃える | 本文段落に `text-align: justify` と `text-justify: inter-ideograph` |
 | 行頭・行末禁則 | `line-break: strict` |
@@ -58,6 +65,7 @@
 ## CSSで保証できないこと
 
 - 指定フォントがない端末では、代替フォントの字幅と太さが変わります。
+- `Japanese Academic` は同梱フォントを優先するため端末差を抑えられますが、`Japanese Print` はOSフォントの差が残ります。
 - `40em` は全角40字相当の幅ですが、約物、欧文、数式、プロポーショナル字形により実際の文字数は変化します。
 - TyporaのPDF設定が `@page` より優先される場合があります。
 - CSS Paged Mediaだけでは、提出要領ごとに異なる柱、ノンブル、表紙、奇偶ページ、厳密な行グリッドを完全には統一できません。

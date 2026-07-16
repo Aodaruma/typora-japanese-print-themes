@@ -29,11 +29,10 @@ body {
   box-sizing: border-box;
   width: min(calc(100% - 2rem), calc(var(--jp-screen-measure) + 8rem));
   max-width: calc(var(--jp-screen-measure) + 8rem);
-  min-height: calc(100vh - 2rem);
-  margin: 1rem auto 4rem;
+  min-height: 0;
+  margin: 0 auto;
   padding: 4rem 4rem 8rem;
   background: var(--jp-paper);
-  box-shadow: var(--jp-shadow);
   line-break: strict;
   overflow-wrap: break-word;
   word-break: normal;
@@ -525,10 +524,9 @@ body {
 @media screen and (max-width: 720px) {
   #write {
     width: 100%;
-    min-height: 100vh;
+    min-height: 0;
     margin: 0;
     padding: 2rem 1.4rem 5rem;
-    box-shadow: none;
   }
 
   #write blockquote {
@@ -559,7 +557,6 @@ body {
     margin: 0 auto;
     padding: 0;
     background: transparent;
-    box-shadow: none;
     color: #000000;
   }
 

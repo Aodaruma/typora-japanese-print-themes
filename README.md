@@ -2,14 +2,12 @@
 
 日本語の長文執筆とA4印刷に合わせた、Typora用の明朝体テーマ集です。一般文書向けの **Japanese Print** と、論文・レポート向けの **Japanese Academic** を収録しています。
 
+編集画面は白一色（`#ffffff`）で、用紙風の影や外枠を設けないシンプルな表示です。A4と余白の指定は印刷・PDF出力時だけ適用されます。
+
+学術テーマには可変フォント **Noto Serif JP（200–900）** を同梱し、和文・欧文・数字・見出しを同じ書体ファミリーへ統一しています。端末ごとのフォント差や、Times系と明朝体を混植した際の字面の不揃いを避けられます。
+
 > [!IMPORTANT]
 > 大学・学会・出版社の指定がある場合は、その執筆要領を優先してください。本テーマは分野横断の唯一の「学術書式」ではなく、一般的な日本語組版と複数の大学の要領から導いた実用的な初期設定です。
-
-## プレビュー
-
-| Japanese Print | Japanese Academic |
-| --- | --- |
-| ![一般文書テーマ](docs/preview-japanese-print.png) | ![学術文書テーマ](docs/preview-japanese-academic.png) |
 
 ## テーマの違い
 
@@ -17,9 +15,9 @@
 | --- | --- | --- |
 | 主用途 | 報告書、解説、長文ノート | 論文、卒論・修論、研究レポート |
 | 本文 | 11pt相当、約42字幅、行高1.9 | 10.5pt相当、40字幅、行高2.15 |
-| 和文 | OS標準の明朝体を優先 | OS標準の明朝体を優先 |
-| 欧文 | 和文書体と調和するSerif | Times系Romanを優先 |
-| 見出し | 明朝体、控えめな罫線 | ゴシック体、白黒・簡潔 |
+| 和文 | OS標準の明朝体を優先 | 同梱Noto Serif JP |
+| 欧文 | 和文書体と調和するSerif | 同梱Noto Serif JP |
+| 見出し | 明朝体、控えめな罫線 | 同梱Noto Serif JP、白黒・簡潔 |
 | 段落 | 1字下げ、見出し直後は天付き | 原則すべて1字下げ |
 | 印刷 | A4、四辺25mm | A4、四辺25mm |
 
@@ -34,6 +32,9 @@
    japanese-academic.css
    japanese-print/
      base.css
+     fonts/
+       NotoSerifJP-Variable.ttf
+       OFL.txt
    ```
 
 4. Typoraを再起動し、`テーマ` メニューから **Japanese Print** または **Japanese Academic** を選びます。
@@ -115,4 +116,4 @@ npm test
 
 ## ライセンス
 
-[MIT License](LICENSE)
+テーマのCSS・文書・スクリプトは [MIT License](LICENSE) です。同梱するNoto Serif JPは [SIL Open Font License 1.1](themes/japanese-print/fonts/OFL.txt) です。

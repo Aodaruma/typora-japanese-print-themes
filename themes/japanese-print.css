@@ -25,8 +25,8 @@
   --jp-paragraph-indent: 1em;
   --jp-paragraph-gap: 0;
 
-  --jp-bg: #f2f1ed;
-  --jp-paper: #fffefb;
+  --jp-bg: #ffffff;
+  --jp-paper: #ffffff;
   --jp-text: #242321;
   --jp-muted: #6d6a64;
   --jp-accent: #405c70;
@@ -35,8 +35,6 @@
   --jp-code-bg: #f1f1ef;
   --jp-selection: #d7e4eb;
   --jp-sidebar: #ebe9e4;
-  --jp-shadow: 0 12px 40px rgb(37 35 31 / 10%);
-
   --side-bar-bg-color: var(--jp-sidebar);
   --control-text-color: var(--jp-muted);
   --select-text-bg-color: var(--jp-selection);
