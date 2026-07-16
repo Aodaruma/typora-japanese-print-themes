@@ -1,4 +1,5 @@
 import { readFile, readdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import process from "node:process";
 
@@ -59,6 +60,9 @@ for (const file of expectedThemes) {
   check(css.includes("size: A4 portrait"), `${relativePath}: A4指定がありません`);
   check(css.includes("--jp-font-body"), `${relativePath}: 本文フォント変数がありません`);
   check(css.includes("--jp-print-font-size"), `${relativePath}: 印刷文字サイズ変数がありません`);
+  check(css.includes("--jp-bg: #ffffff"), `${relativePath}: 画面背景が#ffffffではありません`);
+  check(css.includes("--jp-paper: #ffffff"), `${relativePath}: 本文背景が#ffffffではありません`);
+  check(!css.includes("--jp-shadow"), `${relativePath}: 影の変数が残っています`);
   check(
     !/https?:\/\//i.test(css),
     `${relativePath}: 外部URLへの依存があります`,
@@ -68,6 +72,7 @@ for (const file of expectedThemes) {
 const basePath = path.join("themes", "japanese-print", "base.css");
 const baseCss = await read(basePath);
 checkBalancedBraces(baseCss, basePath);
+check(!baseCss.includes("box-shadow"), `${basePath}: 影の指定が残っています`);
 for (const required of [
   "#write",
   "line-break: strict",
@@ -80,6 +85,23 @@ for (const required of [
   check(baseCss.includes(required), `${basePath}: 必須指定 ${required} がありません`);
 }
 check(!/https?:\/\//i.test(baseCss), `${basePath}: 外部URLへの依存があります`);
+
+const academicCss = await read(path.join("themes", "japanese-academic.css"));
+check(academicCss.includes('@font-face'), "学術テーマに@font-faceがありません");
+check(
+  academicCss.includes('"Noto Serif JP Theme"'),
+  "学術テーマが同梱Noto Serif JPを参照していません",
+);
+const fontPath = path.join("themes", "japanese-print", "fonts", "NotoSerifJP-Variable.ttf");
+const fontBytes = await readFile(path.join(root, fontPath));
+const fontHash = createHash("sha256").update(fontBytes).digest("hex");
+check(fontBytes.length === 13574352, `${fontPath}: ファイルサイズが想定と異なります`);
+check(
+  fontHash === "2fd527ba12b6a44ec30d796d633360da0aeba6c5d4af1304ce12bb4dc15a7dfc",
+  `${fontPath}: SHA-256が公式取得時の値と一致しません`,
+);
+const fontLicense = await read(path.join("themes", "japanese-print", "fonts", "OFL.txt"));
+check(fontLicense.includes("SIL OPEN FONT LICENSE Version 1.1"), "Noto Serif JPのOFL本文がありません");
 
 for (const file of ["README.md", "LICENSE", "CHANGELOG.md", "docs/design-rationale.md", "examples/sample.md"]) {
   try {
@@ -94,6 +116,10 @@ const releaseWorkflow = await read(path.join(".github", "workflows", "release.ym
 const ciWorkflow = await read(path.join(".github", "workflows", "ci.yml"));
 check(releaseWorkflow.includes("v*.*.*"), "リリースワークフローにvX.X.Xタグのトリガーがありません");
 check(releaseWorkflow.includes("gh release create"), "リリース作成コマンドがありません");
+check(
+  releaseWorkflow.includes("NotoSerifJP-Variable.ttf"),
+  "リリースワークフローが同梱フォントをコピーしていません",
+);
 for (const [name, workflow] of [["CI", ciWorkflow], ["Release", releaseWorkflow]]) {
   check(workflow.includes("actions/checkout@v6"), `${name}: actions/checkout@v6を使用していません`);
   check(workflow.includes("actions/setup-node@v6"), `${name}: actions/setup-node@v6を使用していません`);

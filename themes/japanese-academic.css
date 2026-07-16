@@ -6,13 +6,22 @@
 
 @import url("./japanese-print/base.css");
 
+@font-face {
+  font-family: "Noto Serif JP Theme";
+  src: url("./japanese-print/fonts/NotoSerifJP-Variable.ttf");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
 :root {
-  --jp-font-body: "Times New Roman", "Yu Mincho", "YuMincho",
-    "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Noto Serif CJK JP",
-    "Noto Serif JP", "Source Han Serif JP", "MS Mincho", serif;
-  --jp-font-heading: Arial, "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans JP", "Meiryo",
-    sans-serif;
+  --jp-font-body: "Noto Serif JP Theme", "Noto Serif JP", "Noto Serif CJK JP",
+    "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro",
+    "Source Han Serif JP", "MS Mincho", "Times New Roman", serif;
+  --jp-font-heading: "Noto Serif JP Theme", "Noto Serif JP",
+    "Noto Serif CJK JP", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro", "Source Han Serif JP", "MS Mincho",
+    "Times New Roman", serif;
   --jp-font-mono: "BIZ UDゴシック", "BIZ UDGothic", "UDEV Gothic",
     "Source Han Code JP", "Noto Sans Mono CJK JP", "SFMono-Regular",
     Consolas, "Liberation Mono", monospace;
@@ -25,7 +34,7 @@
   --jp-paragraph-indent: 1em;
   --jp-paragraph-gap: 0;
 
-  --jp-bg: #eeeeec;
+  --jp-bg: #ffffff;
   --jp-paper: #ffffff;
   --jp-text: #111111;
   --jp-muted: #575757;
@@ -35,8 +44,6 @@
   --jp-code-bg: #f3f3f3;
   --jp-selection: #d9e4ee;
   --jp-sidebar: #e7e7e5;
-  --jp-shadow: 0 10px 34px rgb(0 0 0 / 9%);
-
   --side-bar-bg-color: var(--jp-sidebar);
   --control-text-color: var(--jp-muted);
   --select-text-bg-color: var(--jp-selection);
