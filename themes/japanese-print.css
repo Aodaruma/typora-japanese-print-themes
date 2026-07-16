@@ -19,6 +19,8 @@
 
   --jp-screen-font-size: 16px;
   --jp-print-font-size: 10pt;
+  --jp-print-title-font-size: 13.5pt;
+  --jp-print-title-letter-spacing: 0.04em;
   --jp-screen-measure: 42em;
   --jp-print-measure: 42em;
   --jp-line-height: 1.9;
@@ -56,14 +58,13 @@
   margin-top: 0;
   text-align: center;
   letter-spacing: 0.08em;
+  text-wrap: balance;
 }
 
-/* Book-style option: the first paragraph after a heading may start flush. */
-#write > h1 + p,
-#write > h2 + p,
-#write > h3 + p,
-#write > h4 + p,
-#write > h5 + p,
-#write > h6 + p {
-  text-indent: 0;
+@media print {
+  #write > h1:first-of-type {
+    font-size: var(--jp-print-title-font-size);
+    letter-spacing: var(--jp-print-title-letter-spacing);
+    white-space: nowrap;
+  }
 }

@@ -60,7 +60,9 @@ for (const file of expectedThemes) {
   check(css.includes("size: A4 portrait"), `${relativePath}: A4指定がありません`);
   check(css.includes("--jp-font-body"), `${relativePath}: 本文フォント変数がありません`);
   check(css.includes("--jp-print-font-size"), `${relativePath}: 印刷文字サイズ変数がありません`);
+  check(css.includes("--jp-print-title-font-size"), `${relativePath}: 印刷表題サイズ変数がありません`);
   check(css.includes("--jp-print-line-height"), `${relativePath}: 印刷行高変数がありません`);
+  check(css.includes("white-space: nowrap"), `${relativePath}: 印刷表題の折返し禁止指定がありません`);
   check(css.includes("--jp-bg: #ffffff"), `${relativePath}: 画面背景が#ffffffではありません`);
   check(css.includes("--jp-paper: #ffffff"), `${relativePath}: 本文背景が#ffffffではありません`);
   check(!css.includes("--jp-shadow"), `${relativePath}: 影の変数が残っています`);
@@ -69,6 +71,12 @@ for (const file of expectedThemes) {
     `${relativePath}: 外部URLへの依存があります`,
   );
 }
+
+const printCss = await read(path.join("themes", "japanese-print.css"));
+check(
+  !printCss.includes("#write > h1 + p"),
+  "一般テーマで見出し直後の段落字下げが解除されています",
+);
 
 const basePath = path.join("themes", "japanese-print", "base.css");
 const baseCss = await read(basePath);

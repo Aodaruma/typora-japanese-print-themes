@@ -28,6 +28,8 @@
 
   --jp-screen-font-size: 16px;
   --jp-print-font-size: 10pt;
+  --jp-print-title-font-size: 13.5pt;
+  --jp-print-title-letter-spacing: 0.04em;
   --jp-screen-measure: 40em;
   --jp-print-measure: 40em;
   --jp-line-height: 2.15;
@@ -69,6 +71,7 @@
   font-family: var(--jp-font-body);
   font-size: 1.7em;
   letter-spacing: 0.08em;
+  text-wrap: balance;
 }
 
 #write > h1:not(:first-of-type) {
@@ -94,5 +97,8 @@
 @media print {
   #write > h1:first-of-type {
     margin-bottom: 2.5em;
+    font-size: var(--jp-print-title-font-size);
+    letter-spacing: var(--jp-print-title-letter-spacing);
+    white-space: nowrap;
   }
 }
