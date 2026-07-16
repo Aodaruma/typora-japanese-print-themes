@@ -18,10 +18,11 @@
     Consolas, "Liberation Mono", monospace;
 
   --jp-screen-font-size: 16px;
-  --jp-print-font-size: 11pt;
+  --jp-print-font-size: 10pt;
   --jp-screen-measure: 42em;
   --jp-print-measure: 42em;
   --jp-line-height: 1.9;
+  --jp-print-line-height: 1.8;
   --jp-paragraph-indent: 1em;
   --jp-paragraph-gap: 0;
 
