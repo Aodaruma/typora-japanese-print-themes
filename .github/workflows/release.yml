@@ -43,13 +43,9 @@ jobs:
         run: |
           set -euo pipefail
           bundle="typora-japanese-print-themes-${GITHUB_REF_NAME}"
-          mkdir -p "dist/${bundle}/japanese-print/fonts"
-          cp themes/japanese-print.css "dist/${bundle}/"
-          cp themes/japanese-academic.css "dist/${bundle}/"
-          cp themes/japanese-print/base.css "dist/${bundle}/japanese-print/"
-          cp themes/japanese-print/fonts/NotoSerifJP-Variable.ttf "dist/${bundle}/japanese-print/fonts/"
-          cp themes/japanese-print/fonts/OFL.txt "dist/${bundle}/japanese-print/fonts/"
-          cp themes/japanese-print/fonts/README.md "dist/${bundle}/japanese-print/fonts/"
+          mkdir -p "dist/${bundle}"
+          cp -R themes/. "dist/${bundle}/"
+          cp -R docs examples "dist/${bundle}/"
           cp README.md LICENSE CHANGELOG.md "dist/${bundle}/"
           (
             cd dist
