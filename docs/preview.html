@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Typora Japanese Print Themes Preview</title>
     <script>
-      const params = new URLSearchParams(window.location.search);
-      const selected = params.get("theme") === "academic"
-        ? "japanese-academic.css"
-        : "japanese-print.css";
+      const themes = {
+        print: "japanese-print.css",
+        "print-dark": "japanese-print-dark.css",
+        academic: "japanese-academic.css",
+        "academic-dark": "japanese-academic-dark.css",
+      };
+      const selected = themes[new URLSearchParams(location.search).get("theme")]
+        || themes.print;
       document.write(`<link rel="stylesheet" href="../themes/${selected}">`);
     </script>
+    <style>html, body { margin: 0; }</style>
   </head>
   <body>
     <main id="write">

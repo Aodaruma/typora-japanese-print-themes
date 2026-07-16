@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Japanese Novel Themes Preview</title>
+    <script>
+      const themes = {
+        horizontal: "japanese-novel.css",
+        "horizontal-dark": "japanese-novel-dark.css",
+        vertical: "japanese-novel-vertical.css",
+        "vertical-dark": "japanese-novel-vertical-dark.css",
+      };
+      const selected = themes[new URLSearchParams(location.search).get("theme")]
+        || themes.horizontal;
+      document.write(`<link rel="stylesheet" href="../themes/${selected}">`);
+    </script>
+    <style>html, body { margin: 0; }</style>
+  </head>
+  <body>
+    <main id="write">
+      <h1>星明かりの待合室</h1>
+
+      <h2>第一章　夜の駅</h2>
+
+      <p>終電の去った駅には、雨の匂いだけが残っていた。古い時計は午後<span class="tcy">11</span>時<span class="tcy">28</span>分を示し、秒針の音がひどく大きく聞こえる。</p>
+
+      <p><span class="dialogue">「まだ、待っているのですか」</span></p>
+
+      <p>背後から声がした。振り返ると、<ruby>灯子<rt>とうこ</rt></ruby>が濡れた傘を閉じている。彼女は<em>ほんとうに大切なこと</em>を告げるように、ゆっくりと言葉を選んだ。</p>
+
+      <p>遠くで踏切が鳴った。列車は来ない。それでも二人は、音の消えた方角を見つめ続けた。風がホームを渡り、広告の紙を一枚だけ揺らした。</p>
+
+      <blockquote>
+        <p>これは公開用に作成した架空の短編です。段落字下げ、会話、ルビ、圏点、縦中横を確認できます。</p>
+      </blockquote>
+
+      <p><span class="md-image"><img src="../examples/assets/novel-sample-station.svg" alt="夜明け前の駅ホームを描いた挿絵" width="360"></span></p>
+
+      <figure>
+        <table>
+          <thead><tr><th>時刻</th><th>場所</th><th>天候</th></tr></thead>
+          <tbody>
+            <tr><td>午後十一時</td><td>夜の駅</td><td>雨</td></tr>
+            <tr><td>午前六時</td><td>朝の橋</td><td>晴れ</td></tr>
+          </tbody>
+        </table>
+      </figure>
+
+      <p>灯子は鞄から小さな封筒を取り出した。宛名はなく、封もされていない。中には一枚の写真と、短い手紙が入っていた。</p>
+
+      <h2>第二章　朝の橋</h2>
+
+      <p>橋を渡り終えると、川面に最初の光が落ちた。写真の中と同じ場所で、時間だけが静かに先へ進んでいる。</p>
+
+      <p><span class="dialogue">「今度は、約束ではなく予定を決めましょう」</span></p>
+
+      <p>灯子は手帳を開いた。二人は立ち上がり、まだ名前のない朝の街へ歩き出した。</p>
+    </main>
+  </body>
+</html>

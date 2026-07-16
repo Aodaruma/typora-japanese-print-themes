@@ -258,6 +258,7 @@ for (const file of [
   "docs/preview.html",
   "docs/vertical-writing-notes.md",
   "docs/novel-preview.html",
+  "scripts/generate-previews.mjs",
   "examples/sample.md",
   "examples/novel-sample.md",
 ]) {
@@ -270,7 +271,9 @@ for (const file of [
 }
 
 for (const file of [
+  "docs/images/japanese-print.png",
   "docs/images/japanese-print-dark.png",
+  "docs/images/japanese-academic.png",
   "docs/images/japanese-academic-dark.png",
   "docs/images/novel-horizontal.png",
   "docs/images/novel-horizontal-dark.png",

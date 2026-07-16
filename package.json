@@ -2,8 +2,9 @@
   "name": "typora-japanese-print-themes",
   "version": "1.0.3",
   "private": true,
-  "description": "Print-oriented Japanese serif themes for Typora",
+  "description": "Print-oriented Japanese serif themes for documents, academic writing, and novels in Typora",
   "scripts": {
+    "preview": "node scripts/generate-previews.mjs",
     "test": "node scripts/validate.mjs"
   },
   "license": "MIT"
