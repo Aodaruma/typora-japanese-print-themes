@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">夜明け前の駅</title>
+  <desc id="desc">雨上がりのホーム、時計、線路を描いた単色の挿絵</desc>
+  <rect width="960" height="540" fill="#f4f1eb"/>
+  <g fill="none" stroke="#594a3d" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M80 390h800M110 440h740M160 490h640" stroke-width="8"/>
+    <path d="M150 390V145h470v245M150 205h470" stroke-width="10"/>
+    <path d="M215 205v185M390 205v185M555 205v185" stroke-width="6"/>
+    <circle cx="745" cy="170" r="66" stroke-width="10"/>
+    <path d="M745 170v-38M745 170l30 22" stroke-width="9"/>
+    <path d="M700 390l64-120 64 120M730 335h68" stroke-width="8"/>
+    <path d="M95 120h500l55 85H140z" stroke-width="10"/>
+    <path d="M80 410l110 80M260 410l110 80M440 410l110 80M620 410l110 80" stroke-width="4" opacity="0.55"/>
+  </g>
+</svg>

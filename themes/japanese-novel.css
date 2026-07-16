@@ -1,0 +1,68 @@
+/*
+ * Japanese Novel for Typora
+ * Horizontal Japanese prose theme for comfortable reading and A4 printing.
+ * License: MIT
+ */
+
+@import url("./japanese-novel/base.css");
+
+:root {
+  --jp-font-body: "Noto Serif JP Novel", "Noto Serif JP",
+    "Noto Serif CJK JP", "Yu Mincho", "YuMincho",
+    "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Source Han Serif JP",
+    "MS Mincho", serif;
+  --jp-font-heading: var(--jp-font-body);
+  --jp-font-mono: "BIZ UDゴシック", "BIZ UDGothic", "UDEV Gothic",
+    "Source Han Code JP", "Noto Sans Mono CJK JP", "SFMono-Regular",
+    Consolas, "Liberation Mono", monospace;
+
+  --jp-screen-font-size: 17px;
+  --jp-print-font-size: 10pt;
+  --jp-print-title-font-size: 13.5pt;
+  --jp-print-title-letter-spacing: 0.12em;
+  --jp-screen-measure: 36em;
+  --jp-print-measure: 38em;
+  --jp-line-height: 2;
+  --jp-print-line-height: 1.9;
+  --jp-paragraph-indent: 1em;
+  --jp-paragraph-gap: 0;
+
+  --jp-bg: #ffffff;
+  --jp-paper: #ffffff;
+  --jp-text: #24211e;
+  --jp-muted: #69635d;
+  --jp-accent: #495f70;
+  --jp-border: #ccc6bd;
+  --jp-soft: #f4f1ec;
+  --jp-code-bg: #f3f1ed;
+  --jp-code-comment: #686868;
+  --jp-code-keyword: #60456c;
+  --jp-code-number: #8a4b28;
+  --jp-code-string: #366744;
+  --jp-code-variable: #285c78;
+  --jp-mark: #fff1a8;
+  --jp-selection: #d9e7ee;
+  --jp-sidebar: #eeece8;
+
+  --bg-color: var(--jp-bg);
+  --text-color: var(--jp-text);
+  --md-char-color: var(--jp-muted);
+  --meta-content-color: var(--jp-muted);
+  --primary-color: var(--jp-accent);
+  --rawblock-edit-panel-bd: var(--jp-code-bg);
+  --search-hit-bg-color: var(--jp-mark);
+  --search-select-bg-color: var(--jp-selection);
+  --side-bar-bg-color: var(--jp-sidebar);
+  --control-text-color: var(--jp-muted);
+  --select-text-bg-color: var(--jp-selection);
+  --select-text-font-color: var(--jp-text);
+  --active-file-bg-color: #dedad3;
+  --active-file-text-color: var(--jp-text);
+  --item-hover-bg-color: #e5e1da;
+  --window-border: 1px solid var(--jp-border);
+}
+
+@page {
+  size: A4 portrait;
+  margin: 24mm 25mm;
+}

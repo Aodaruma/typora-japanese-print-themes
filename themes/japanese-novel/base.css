@@ -1,0 +1,227 @@
+/* Shared foundation for all Japanese Novel themes. */
+
+@import url("../japanese-print/base.css");
+
+@font-face {
+  font-family: "Noto Serif JP Novel";
+  src: url("../japanese-print/fonts/NotoSerifJP-Variable.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+body {
+  caret-color: var(--jp-accent);
+}
+
+/* Keep the editor as a simple, shadowless reading surface. */
+#write {
+  background: var(--jp-paper);
+  box-shadow: none;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+/* Novel prose starts with a one-em indent, including after headings. */
+#write p,
+#write h1 + p,
+#write h2 + p,
+#write h3 + p,
+#write h4 + p,
+#write h5 + p,
+#write h6 + p {
+  text-indent: var(--jp-paragraph-indent);
+}
+
+/* Optional helper for dialogue that should begin flush with the text block. */
+#write p.dialogue,
+#write p:has(.dialogue),
+#write .dialogue > p {
+  text-indent: 0;
+}
+
+/* Restrained chapter headings without report-style rules. */
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  border: 0;
+  font-family: var(--jp-font-body);
+  text-wrap: balance;
+}
+
+#write h1 {
+  margin: 3.5em 0 2.2em;
+  padding: 0;
+  font-size: 1.55em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+#write h2 {
+  margin: 3em 0 1.8em;
+  padding: 0;
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+#write h3 {
+  margin-top: 2.5em;
+  font-size: 1.12em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+#write h4,
+#write h5,
+#write h6 {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+#write > h1:first-of-type {
+  margin-top: 0;
+}
+
+@supports (word-break: auto-phrase) {
+  #write h1,
+  #write h2,
+  #write h3,
+  #write h4,
+  #write h5,
+  #write h6 {
+    overflow-wrap: normal;
+    word-break: auto-phrase;
+  }
+}
+
+/* Markdown emphasis is rendered as Japanese sesame emphasis marks. */
+#write em,
+#write .emphasis,
+#write .emphasis-dot {
+  font-style: normal;
+  -webkit-text-emphasis-color: currentColor;
+  -webkit-text-emphasis-position: over right;
+  -webkit-text-emphasis-style: filled sesame;
+  text-emphasis-color: currentColor;
+  text-emphasis-position: over right;
+  text-emphasis-style: filled sesame;
+}
+
+/* Ruby and optional tate-chu-yoko helper (also shared with vertical prose). */
+#write ruby {
+  ruby-align: space-around;
+  ruby-position: over;
+}
+
+#write rt {
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+#write .tcy {
+  -webkit-text-combine: horizontal;
+  text-combine-upright: all;
+}
+
+#write mark {
+  background: var(--jp-mark);
+  color: inherit;
+}
+
+/* Keep fenced-code syntax legible in both screen palettes. */
+.cm-s-inner .cm-comment {
+  color: var(--jp-code-comment);
+}
+
+.cm-s-inner .cm-keyword,
+.cm-s-inner .cm-atom,
+.cm-s-inner .cm-tag {
+  color: var(--jp-code-keyword);
+}
+
+.cm-s-inner .cm-number,
+.cm-s-inner .cm-property,
+.cm-s-inner .cm-attribute {
+  color: var(--jp-code-number);
+}
+
+.cm-s-inner .cm-string,
+.cm-s-inner .cm-string-2 {
+  color: var(--jp-code-string);
+}
+
+.cm-s-inner .cm-def,
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-variable-2,
+.cm-s-inner .cm-variable-3 {
+  color: var(--jp-code-variable);
+}
+
+#write blockquote {
+  margin-right: 1.5em;
+  margin-left: 1.5em;
+  padding-left: 1em;
+  color: var(--jp-muted);
+}
+
+/* A quiet scene break suitable for prose. */
+#write hr {
+  height: auto;
+  margin: 2.5em auto;
+  border: 0;
+  color: var(--jp-muted);
+  text-align: center;
+}
+
+#write hr::after {
+  content: "＊　＊　＊";
+  display: inline-block;
+  letter-spacing: 0.15em;
+}
+
+#write .scene-break,
+#write p:has(.scene-break) {
+  margin: 2.5em 0;
+  color: var(--jp-muted);
+  text-align: center;
+  text-indent: 0;
+}
+
+/* Opt-in helper for chapters that should start on a fresh printed page. */
+@media print {
+  #write {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+  }
+
+  #write h1 {
+    font-size: var(--jp-print-title-font-size);
+    letter-spacing: var(--jp-print-title-letter-spacing);
+  }
+
+  #write .chapter {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  #write mark {
+    background: transparent !important;
+    color: #000000 !important;
+  }
+
+  #write del,
+  #write hr,
+  #write .scene-break,
+  #write rt {
+    color: #000000 !important;
+  }
+}

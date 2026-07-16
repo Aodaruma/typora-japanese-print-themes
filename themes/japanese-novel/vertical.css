@@ -1,0 +1,423 @@
+/* Vertical-writing layer shared by the Japanese Novel vertical themes. */
+
+/* Keep Typora's application chrome horizontal; only the editor is vertical. */
+#write {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+#write {
+  direction: ltr;
+  line-break: strict;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Keep short numbers, such as dates and chapter numbers, upright when marked. */
+#write .tcy {
+  display: inline;
+  text-combine-upright: all;
+  -webkit-text-combine: horizontal;
+  letter-spacing: 0;
+}
+
+/* Ruby is placed on the right side of a vertical line. */
+#write ruby {
+  ruby-align: space-around;
+  ruby-position: over;
+}
+
+#write rt {
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Japanese emphasis marks replace synthetic italics in prose. */
+#write em:not(.md-toc-inner) {
+  font-style: normal;
+  text-emphasis-style: filled sesame;
+  -webkit-text-emphasis-style: filled sesame;
+  text-emphasis-position: over right;
+  -webkit-text-emphasis-position: over right;
+}
+
+#write p {
+  margin-block: 0;
+  margin-inline: var(--jp-paragraph-gap) 0;
+}
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  width: auto;
+  max-width: none;
+  margin-block: 1.8em 0.9em;
+  margin-inline: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1.65;
+  text-align: start;
+  text-orientation: mixed;
+}
+
+/* h1 is suitable for a work title; h2 is suitable for a chapter title. */
+#write h1 {
+  font-size: 1.55em;
+  letter-spacing: 0.14em;
+}
+
+#write h2 {
+  font-size: 1.3em;
+  letter-spacing: 0.1em;
+}
+
+#write h3 {
+  font-size: 1.13em;
+  letter-spacing: 0.06em;
+}
+
+#write .chapter,
+#write .chapter-title {
+  margin-block-start: 3em;
+  font-size: 1.3em;
+  letter-spacing: 0.12em;
+  break-before: page;
+  page-break-before: always;
+}
+
+#write blockquote {
+  margin-block: 1.25em;
+  margin-inline: 1em;
+  padding-block: 0.8em 0;
+  padding-inline: 0;
+  border: 0;
+  border-block-start: 0.12em solid var(--jp-border);
+  color: var(--jp-muted);
+}
+
+#write blockquote p {
+  text-indent: 0;
+}
+
+#write hr {
+  width: 0;
+  height: 5em;
+  margin-block: 2.5em;
+  margin-inline: auto;
+  border: 0;
+  border-inline-start: 1px solid var(--jp-border);
+}
+
+#write ul,
+#write ol {
+  margin-block: 0.7em 1em;
+  margin-inline: 0;
+  padding: 0;
+  padding-inline-start: 2em;
+}
+
+#write li {
+  padding: 0;
+  padding-inline-start: 0.15em;
+}
+
+/*
+ * Typora's code editor, MathJax, and diagram controls assume horizontal
+ * layout. Keep those editing islands horizontal and allow local scrolling.
+ */
+#write pre,
+#write .md-fences,
+#write .md-table-edit,
+#write .ty-table-edit,
+#write .md-math-block,
+#write .mathjax-block,
+#write .md-htmlblock,
+#write .md-diagram-panel,
+#write .mermaid {
+  writing-mode: horizontal-tb;
+  -webkit-writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  direction: ltr;
+  max-width: min(42rem, 72vw);
+  max-height: 72vh;
+  overflow: auto;
+  text-align: left;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/*
+ * A Markdown table can participate in the vertical flow. The first Markdown
+ * row becomes the rightmost vertical column, followed by later rows to its
+ * left. Typora's floating table controls remain horizontal above.
+ */
+#write table {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  direction: ltr;
+  text-align: start;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+#write table th,
+#write table td {
+  min-inline-size: 5em;
+  min-block-size: 2.5em;
+  padding-block: 0.55em;
+  padding-inline: 0.8em;
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: start;
+  vertical-align: top;
+  white-space: normal;
+}
+
+/*
+ * Images and tables must reserve their physical width as an independent
+ * vertical-flow block. Otherwise Typora leaves the paragraph one character
+ * wide while the image itself protrudes across neighboring text columns.
+ */
+#write p:has(img),
+#write figure:has(img),
+#write figure:has(table) {
+  display: flex;
+  width: auto;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  margin-block: 1.5em;
+  margin-inline: 0;
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  direction: ltr;
+  justify-content: center;
+  align-items: center;
+  text-indent: 0;
+  overflow: visible;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+#write .md-image {
+  writing-mode: horizontal-tb;
+  -webkit-writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  direction: ltr;
+  text-indent: 0;
+}
+
+/* Override Typora's p > .md-image { width: 100% } inside vertical flow. */
+#write p:has(img) .md-image {
+  display: block;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+#write img,
+#write svg,
+#write video {
+  max-width: min(42rem, 72vw);
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+/* Source mode remains horizontal because CodeMirror is not vertical-aware. */
+.typora-sourceview-on #write {
+  width: min(calc(100% - 2rem), calc(var(--jp-screen-measure) + 8rem));
+  max-width: calc(var(--jp-screen-measure) + 8rem);
+  height: auto;
+  margin: 0 auto;
+  writing-mode: horizontal-tb;
+  -webkit-writing-mode: horizontal-tb;
+  overflow: visible;
+}
+
+@media screen {
+  html,
+  body,
+  #typora-sidebar,
+  #top-titlebar,
+  footer,
+  .typora-menu,
+  .typora-export-sidebar,
+  .megamenu-menu,
+  #typora-quick-open {
+    writing-mode: horizontal-tb;
+    -webkit-writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    direction: ltr;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  html.typora-sourceview-on,
+  body.typora-sourceview-on {
+    overflow: auto;
+  }
+
+  #write {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    max-height: none;
+    min-height: 0;
+    margin: 0;
+    padding: 3rem 4rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-gutter: stable;
+  }
+
+  #write > p:has(img),
+  #write > figure:has(img),
+  #write > figure:has(table) {
+    inline-size: calc(100vh - 6rem);
+  }
+
+  #write p:has(img) img,
+  #write figure:has(img) img {
+    max-width: min(36rem, 48vw);
+    max-height: calc(100vh - 8rem);
+  }
+
+  /*
+   * YAML front matter is useful for export settings but its horizontal editor
+   * consumes most of a vertical viewport. Edit it in Source Code Mode instead.
+   */
+  body:not(.typora-sourceview-on) #write > pre.md-meta-block {
+    display: none;
+  }
+
+  /*
+   * A block paragraph always starts a new vertical line and leaves the rest of
+   * the previous line empty. Flow adjacent prose paragraphs inline on screen
+   * so short dialogue does not create a viewport-high blank area. Printing
+   * keeps conventional block paragraphs.
+   */
+  #write > p:not(:has(img)) {
+    display: inline;
+    margin: 0;
+    text-indent: 0;
+  }
+
+  #write > p:not(:has(img))::before {
+    content: "";
+    display: inline-block;
+    inline-size: var(--jp-paragraph-indent);
+    block-size: 0;
+  }
+
+  #write > :first-child {
+    margin-block-start: 0;
+  }
+}
+
+/*
+ * vertical-rl establishes top-to-bottom lines and right-to-left columns.
+ * Chromium then continues overflowing A4 pages toward the left.
+ */
+@page {
+  size: A4 portrait;
+  margin: 20mm;
+}
+
+@media print {
+  html,
+  body {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  #write {
+    width: auto;
+    max-width: none;
+    height: 257mm;
+    max-height: 257mm;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: #ffffff !important;
+    color: #000000 !important;
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    text-orientation: mixed;
+    direction: ltr;
+  }
+
+  #write .chapter,
+  #write .chapter-title {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  #write pre,
+  #write .md-fences,
+  #write .md-table-edit,
+  #write .ty-table-edit,
+  #write .md-math-block,
+  #write .mathjax-block,
+  #write .md-htmlblock,
+  #write .md-diagram-panel,
+  #write .mermaid,
+  #write .md-image {
+    max-width: 150mm;
+    max-height: 220mm;
+    overflow: hidden;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+
+  #write p:has(img),
+  #write figure:has(img),
+  #write figure:has(table) {
+    inline-size: 100%;
+    max-width: none;
+    max-height: none;
+    overflow: visible;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+
+  #write table {
+    max-inline-size: 220mm;
+    max-block-size: 150mm;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+
+  #write img,
+  #write svg,
+  #write video {
+    max-width: 150mm;
+    max-height: 220mm;
+  }
+}
