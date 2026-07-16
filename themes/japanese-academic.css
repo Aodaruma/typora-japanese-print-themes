@@ -71,7 +71,17 @@
   font-family: var(--jp-font-body);
   font-size: 1.7em;
   letter-spacing: 0.08em;
+  line-break: strict;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  white-space: normal;
   text-wrap: balance;
+}
+
+@supports (word-break: auto-phrase) {
+  #write > h1:first-of-type {
+    word-break: auto-phrase;
+  }
 }
 
 #write > h1:not(:first-of-type) {
@@ -99,6 +109,5 @@
     margin-bottom: 2.5em;
     font-size: var(--jp-print-title-font-size);
     letter-spacing: var(--jp-print-title-letter-spacing);
-    white-space: nowrap;
   }
 }

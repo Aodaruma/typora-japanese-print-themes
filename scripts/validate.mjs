@@ -62,7 +62,13 @@ for (const file of expectedThemes) {
   check(css.includes("--jp-print-font-size"), `${relativePath}: 印刷文字サイズ変数がありません`);
   check(css.includes("--jp-print-title-font-size"), `${relativePath}: 印刷表題サイズ変数がありません`);
   check(css.includes("--jp-print-line-height"), `${relativePath}: 印刷行高変数がありません`);
-  check(css.includes("white-space: nowrap"), `${relativePath}: 印刷表題の折返し禁止指定がありません`);
+  check(css.includes("line-break: strict"), `${relativePath}: 表題の禁則指定がありません`);
+  check(css.includes("overflow-wrap: anywhere"), `${relativePath}: 表題の長い文字列への折返し指定がありません`);
+  check(css.includes("word-break: normal"), `${relativePath}: 表題の改行フォールバックがありません`);
+  check(css.includes("word-break: auto-phrase"), `${relativePath}: 表題の文節改行指定がありません`);
+  check(css.includes("white-space: normal"), `${relativePath}: 表題の折返し許可指定がありません`);
+  check(css.includes("text-wrap: balance"), `${relativePath}: 表題のバランス改行指定がありません`);
+  check(!css.includes("white-space: nowrap"), `${relativePath}: 表題の折返し禁止指定が残っています`);
   check(css.includes("--jp-bg: #ffffff"), `${relativePath}: 画面背景が#ffffffではありません`);
   check(css.includes("--jp-paper: #ffffff"), `${relativePath}: 本文背景が#ffffffではありません`);
   check(!css.includes("--jp-shadow"), `${relativePath}: 影の変数が残っています`);
@@ -74,8 +80,8 @@ for (const file of expectedThemes) {
 
 const printCss = await read(path.join("themes", "japanese-print.css"));
 check(
-  !printCss.includes("#write > h1 + p"),
-  "一般テーマで見出し直後の段落字下げが解除されています",
+  printCss.includes("#write > h1 + p") && printCss.includes("text-indent: 0"),
+  "一般テーマで見出し直後の段落が天付きになっていません",
 );
 
 const basePath = path.join("themes", "japanese-print", "base.css");
@@ -92,6 +98,7 @@ check(
 );
 for (const required of [
   "#write",
+  '-webkit-locale: "ja"',
   "line-break: strict",
   "text-align: justify",
   "@media print",
